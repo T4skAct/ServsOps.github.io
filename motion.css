@@ -1,0 +1,169 @@
+/* ServsOps motion layer.
+   Everything keyed to html.mo / html.go, which assets/js/motion.js only adds
+   when the visitor has NOT asked for reduced motion. No JS = no hidden states.
+
+   Hidden "before" states are keyed to the elements themselves (.page-header, .card, ...)
+   and NOT to classes added by JS after parsing, so nothing can flash visible before it is
+   hidden. If the script stalls or fails it removes html.mo and the page simply shows. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-group(root) { animation-duration: .3s; }
+  .navbar { view-transition-name: site-nav; }
+}
+
+@keyframes wipe-x { from { clip-path: inset(-12px 100% -12px -12px); } to { clip-path: inset(-12px -12px -12px -12px); } }
+@keyframes wipe-y { from { clip-path: inset(-60px -60px 100% -60px); } to { clip-path: inset(-60px -60px -60px -60px); } }
+@keyframes scan-x { from { left: -3px; } to { left: calc(100% + 9px); } }
+@keyframes scan-y { from { top: -2px; } to { top: calc(100% + 58px); } }
+@keyframes line-fade { from, 85% { opacity: 1; } to { opacity: 0; } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; translate: 0 14px; } }
+@keyframes seat { from { opacity: 0; transform: translate3d(70px, 0, 18px); } 60% { opacity: 1; } }
+@keyframes ignite { 0%, 35% { opacity: 0; } 40% { opacity: 1; } 50% { opacity: .15; } 60%, 100% { opacity: 1; } }
+@keyframes sweep { from { background-position: 0 -100%; } to { background-position: 0 200%; } }
+@keyframes faq-in { from { opacity: 0; translate: 0 -6px; } }
+
+/* About page */
+@keyframes underline { to { background-size: 100% 1px; } }
+@keyframes bar-grow { from { transform: scaleY(0); } }
+@keyframes lock { 0%, 100% { color: var(--primary-cyan); text-shadow: 0 0 15px rgba(0, 240, 255, .4); }
+                  35% { color: #e6fdff; text-shadow: 0 0 30px rgba(0, 240, 255, .95), 0 0 6px #fff; } }
+@keyframes radar { 0% { transform: translateY(-100%); opacity: 0; } 8% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(290%); opacity: 0; } }
+@keyframes focus-in { from { transform: scale(1.12); filter: brightness(1.7) saturate(.4) blur(2px); } to { transform: none; filter: none; } }
+@keyframes lock-on { from { opacity: 0; transform: scale(1.12); } to { opacity: .55; transform: none; } }
+
+/* Parallax grid: the page grid moves to its own fixed layer that drifts slower than the content */
+.mo body {
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(0, 240, 255, .08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 65%, rgba(37, 99, 235, .1) 0%, transparent 45%);
+  background-size: 100% 100%;
+}
+.mo .mo-grid {
+  position: fixed; inset: -40px 0; z-index: -1; pointer-events: none; will-change: transform;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent);
+}
+
+/* Scroll progress along the navbar edge */
+.mo .navbar::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, var(--primary-cyan), var(--electric-blue));
+  box-shadow: 0 0 10px rgba(0, 240, 255, .6);
+  transform: scaleX(var(--sp, 0)); transform-origin: 0 50%;
+}
+
+/* ---------- Home hero: rack boot sequence ---------- */
+.mo .hero-kicker { width: fit-content; }
+.mo .hero-title { position: relative; }
+.mo .hero-title::after,
+.mo .page-header .section-title::after,
+.mo .about-subtitle::after {
+  content: ''; position: absolute; top: -6px; bottom: -6px; left: -3px; width: 3px; opacity: 0; pointer-events: none;
+  background: var(--primary-cyan); box-shadow: 0 0 16px var(--primary-cyan), 0 0 4px #fff;
+}
+.mo:not(.go) .hero-kicker,
+.mo:not(.go) .hero-title { clip-path: inset(-12px 100% -12px -12px); }
+.mo:not(.go) :is(.hero-desc, .hero-actions, .rack-visual, .rack-blade) { opacity: 0; }
+
+.mo.go .hero-kicker { animation: wipe-x 1s steps(var(--n, 40), end) .15s backwards; }
+.mo.go .hero-title { animation: wipe-x 1.1s cubic-bezier(.7, 0, .2, 1) .6s backwards; }
+.mo.go .hero-title::after {
+  animation: scan-x 1.1s cubic-bezier(.7, 0, .2, 1) .6s backwards, line-fade 1.1s linear .6s backwards;
+}
+.mo.go .hero-desc { animation: rise .8s ease 1.55s backwards; }
+.mo.go .hero-actions { animation: rise .8s ease 1.7s backwards; }
+
+.mo .rack-visual { position: relative; transform-style: preserve-3d; will-change: transform; }
+.mo .rack-visual::before,
+.mo .rack-visual::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+.mo .rack-visual::before {
+  transform: translateZ(1px);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(0, 240, 255, .13), transparent 50%);
+}
+.mo .rack-visual::after {
+  transform: translateZ(30px);
+  background: linear-gradient(180deg, transparent, rgba(0, 240, 255, .2), transparent) no-repeat 0 200% / 100% 40%;
+}
+.mo .rack-blade { transform: translateZ(18px); }
+.mo.go .rack-visual { animation: fade .9s ease .4s backwards; }
+.mo.go .rack-blade { animation: seat .8s cubic-bezier(.2, .9, .25, 1.12) backwards; }
+.mo.go .rack-blade:nth-of-type(1) { animation-delay: .9s; }
+.mo.go .rack-blade:nth-of-type(2) { animation-delay: 1.15s; }
+.mo.go .rack-blade > div:last-child { animation: ignite .9s linear 1.5s backwards; }
+.mo.go .rack-blade:nth-of-type(2) > div:last-child { animation-delay: 1.75s; }
+.mo.go .rack-visual::after { animation: sweep 1.5s ease-in-out 2s backwards; }
+
+/* ---------- All public pages: scan-wipe reveals ---------- */
+.mo .page-header .section-title { position: relative; width: fit-content; margin-inline: auto; }
+.mo .page-header:not(.in) :is(.section-tag, .section-title) { clip-path: inset(-12px 100% -12px -12px); }
+.mo .page-header:not(.in) .section-lead { opacity: 0; }
+.mo .page-header.in .section-tag { animation: wipe-x calc(var(--n, 20) * 28ms) steps(var(--n, 20), end) backwards; }
+.mo .page-header.in .section-title { animation: wipe-x 1s cubic-bezier(.7, 0, .2, 1) .3s backwards; }
+.mo .page-header.in .section-title::after {
+  animation: scan-x 1s cubic-bezier(.7, 0, .2, 1) .3s backwards, line-fade 1s linear .3s backwards;
+}
+.mo .page-header.in .section-lead { animation: fade .8s ease .85s backwards; }
+
+.mo :is(.card, .feature-box, .stat-card, .form-panel, .info-panel):not(.in) { visibility: hidden; }
+.mo :is(.card, .feature-box, .stat-card, .form-panel, .info-panel).in {
+  animation: wipe-y .9s cubic-bezier(.6, 0, .2, 1) var(--d, 0s) backwards;
+}
+.mo :is(.card, .stat-card)::after {
+  content: ''; position: absolute; left: 0; right: 0; top: -2px; height: 2px; opacity: 0; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary-cyan), transparent);
+  box-shadow: 0 0 14px var(--primary-cyan);
+}
+.mo .card.hardware-card::after {
+  background: linear-gradient(90deg, transparent, var(--accent-amber), transparent);
+  box-shadow: 0 0 14px var(--accent-amber);
+}
+.mo :is(.card, .stat-card).in::after {
+  animation: scan-y .9s cubic-bezier(.6, 0, .2, 1) var(--d, 0s) backwards, line-fade .9s linear var(--d, 0s) backwards;
+}
+
+/* Answer opens in response to the click */
+.mo .faq-item[open] p { animation: faq-in .35s ease; }
+
+/* ---------- About page: left column boots in sequence, map locks on, figures lock in ----------
+   --d for these blocks is set by motion.js when they enter view, so the stagger always starts from
+   whatever is on screen (first screen on load, one block at a time when scrolling). */
+.mo .about-subtitle { position: relative; width: fit-content; max-width: 100%; }
+/* hidden with opacity, never clip-path: IntersectionObserver sees a fully clipped target as 0% visible and would never reveal it */
+.mo .about-subtitle:not(.in) { opacity: 0; }
+.mo .about-subtitle.in { animation: wipe-x calc(var(--n, 30) * 26ms) steps(var(--n, 30), end) var(--d, 0s) backwards; }
+.mo .about-subtitle.in::after {
+  animation: scan-x calc(var(--n, 30) * 26ms) steps(var(--n, 30), end) var(--d, 0s) backwards,
+             line-fade calc(var(--n, 30) * 26ms) linear var(--d, 0s) backwards;
+}
+
+.mo .about-text:not(.in) { opacity: 0; }
+.mo .about-text.in { animation: rise .75s cubic-bezier(.2, .7, .2, 1) var(--d, 0s) backwards; }
+.mo .about-text strong { background: linear-gradient(90deg, var(--primary-cyan), var(--electric-blue)) 0 100% / 0 1px no-repeat; }
+.mo .about-text.in strong { animation: underline .9s cubic-bezier(.6, 0, .2, 1) calc(var(--d, 0s) + .6s) forwards; }
+
+.mo .about-highlights:not(.in) { opacity: 0; }
+.mo .about-highlights > div:nth-child(2) { --i: 1; }
+.mo .about-highlights.in > div {
+  animation: rise .7s cubic-bezier(.2, .7, .2, 1) calc(var(--d, 0s) + var(--i, 0) * .12s) backwards;
+}
+.mo .about-highlights.in > div::before {
+  animation: bar-grow .6s cubic-bezier(.6, 0, .2, 1) calc(var(--d, 0s) + var(--i, 0) * .12s + .25s) backwards;
+}
+
+.mo .about-map:not(.in) { opacity: 0; }
+.mo .about-map.in { animation: wipe-y .9s cubic-bezier(.6, 0, .2, 1) var(--d, 0s) backwards; }
+.mo .about-map.in .about-media { animation: focus-in 1.3s cubic-bezier(.2, .7, .2, 1) var(--d, 0s) backwards; }
+.mo .about-map.in::before { animation: lock-on .9s cubic-bezier(.2, .7, .2, 1) calc(var(--d, 0s) + .35s) backwards; }
+.mo .about-map::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 34%; opacity: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0), rgba(0, 240, 255, .2) 90%, var(--primary-cyan));
+}
+.mo .about-map.in::after { animation: radar 1.3s cubic-bezier(.5, 0, .3, 1) calc(var(--d, 0s) + .2s) backwards; }
+
+.mo .stat-number.lk { animation: lock .8s ease-out; }

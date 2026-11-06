@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServsOps — Consola de Solicitudes</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060913">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <nav class="navbar" aria-label="Navegación principal">
+    <a href="index.html" class="brand">SERVS<span>OPS</span></a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="navLinks">
+      <span class="sr-only">Abrir menú</span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servidores.html">Servidores Web</a></li>
+      <li><a href="hardware.html">Servidores Físicos <span class="nav-badge" aria-hidden="true">PAGO ÚNICO</span><span class="sr-only">— pago único</span></a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="contacto.html">Contáctanos</a></li>
+    </ul>
+    <a href="contacto.html" class="btn btn-outline nav-cta">Soporte 24/7</a>
+  </nav>
+
+  <main id="main">
+    <section id="loginSection" class="login-wrapper" aria-labelledby="loginTitle">
+      <div class="login-card">
+        <div class="login-head">
+          <span class="section-tag">// ACCESO RESTRINGIDO</span>
+          <h1 class="login-title" id="loginTitle">Consola de correo</h1>
+          <p class="login-subtitle">
+            Inicia sesión con tus credenciales de operador para gestionar las solicitudes en base de datos.
+          </p>
+        </div>
+
+        <p id="loginError" class="login-error" role="alert" aria-hidden="true">
+          Credenciales incorrectas. Verifica tu usuario y contraseña.
+        </p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" for="adminUser">Usuario operador</label>
+            <input type="text" id="adminUser" class="form-control" placeholder="admin" autocomplete="username" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="adminPass">Clave de acceso</label>
+            <input type="password" id="adminPass" class="form-control" placeholder="••••••••" autocomplete="current-password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Desbloquear bandeja</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="adminPanel" class="admin-panel" aria-labelledby="adminTitle">
+      <div class="admin-topbar">
+        <div>
+          <span class="section-tag">// SISTEMA INTERNO DE COMUNICACIONES</span>
+          <h1 class="admin-title" id="adminTitle">Bandeja de entrada de interesados</h1>
+          <p class="admin-note">Conectado en tiempo real a la base de datos central (MySQL).</p>
+        </div>
+        <div class="admin-actions">
+          <span class="admin-user">● OPERADOR: ADMIN</span>
+          <button type="button" id="logoutBtn" class="btn btn-outline btn-small">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-box">
+          <div>
+            <div class="stat-caption">Total recibidos</div>
+            <div id="statTotal" class="num">0</div>
+          </div>
+          <span class="stat-tag">[INBOX]</span>
+        </div>
+        <div class="stat-box">
+          <div>
+            <div class="stat-caption">Sin leer</div>
+            <div id="statUnread" class="num">0</div>
+          </div>
+          <span class="stat-tag">[NUEVOS]</span>
+        </div>
+        <div class="stat-box">
+          <div>
+            <div class="stat-caption">Interesados hardware</div>
+            <div id="statHardware" class="num">0</div>
+          </div>
+          <span class="stat-tag">[FÍSICOS]</span>
+        </div>
+        <div class="stat-box">
+          <div>
+            <div class="stat-caption">Interesados cloud</div>
+            <div id="statCloud" class="num">0</div>
+          </div>
+          <span class="stat-tag">[MENSUAL]</span>
+        </div>
+      </div>
+
+      <div class="mail-toolbar">
+        <label class="sr-only" for="searchInput">Buscar solicitudes</label>
+        <input type="search" id="searchInput" class="form-control" placeholder="Buscar por cliente, email o producto…">
+        <label class="sr-only" for="filterDept">Filtrar por departamento</label>
+        <select id="filterDept" class="form-control">
+          <option value="ALL">Todos los departamentos</option>
+          <option value="UNREAD">Solo no leídos</option>
+          <option value="VENTAS-HARDWARE">Ventas hardware físico</option>
+          <option value="VENTAS-CLOUD">Ventas web &amp; VPS</option>
+          <option value="HOUSING">Housing &amp; colocation</option>
+          <option value="SOPORTE">Soporte técnico L3</option>
+        </select>
+        <button type="button" id="emptyBtn" class="btn btn-danger btn-small">Vaciar todo</button>
+      </div>
+
+      <div class="mail-layout">
+        <div id="mailList" class="mail-sidebar"></div>
+        <div id="mailReader" class="mail-reader">
+          <p class="mail-placeholder">
+            Selecciona una solicitud de la columna izquierda para ver los detalles.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand footer-brand">SERVS<span>OPS</span></a>
+        <p>Infraestructura cloud y servidores de hardware dedicados con SLA del 99,999%.</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Navegación</h2>
+        <p><a href="servidores.html">Servidores Web</a></p>
+        <p><a href="hardware.html">Servidores Físicos</a></p>
+        <p><a href="nosotros.html">Sobre Nosotros</a></p>
+        <p><a href="contacto.html">Contáctanos</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Legal</h2>
+        <p><a href="legal.html#aviso-legal">Aviso legal</a></p>
+        <p><a href="legal.html#privacidad">Privacidad</a></p>
+        <p><a href="legal.html#cookies">Cookies</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Contacto</h2>
+        <p><a href="mailto:contacto@servsops.es">contacto@servsops.es</a></p>
+        <p>NOC 24/7 · Madrid · Barcelona · Málaga</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 ServsOps Infrastructure</div>
+      <div><a href="legal.html#aviso-legal">Aviso legal</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

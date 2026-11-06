@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServsOps — Contáctanos &amp; Soporte</title>
+  <meta name="description" content="Contacta con ventas cloud, venta de hardware físico, housing o soporte técnico L3. Respuesta de un ingeniero en menos de 15 minutos.">
+  <link rel="canonical" href="https://servsops.es/contacto.html">
+  <meta name="theme-color" content="#060913">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ServsOps">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Centro de Contacto &amp; Solicitudes — ServsOps">
+  <meta property="og:description" content="Ventas cloud, hardware físico, housing o soporte L3. Respuesta en menos de 15 minutos.">
+  <meta property="og:url" content="https://servsops.es/contacto.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/contacto.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <div id="toastAlert" class="toast-alert" role="status" aria-live="polite" data-variant="success">
+    <span class="toast-icon" aria-hidden="true">✔</span>
+    <div>
+      <strong id="toastTitle" class="toast-title">¡Solicitud enviada!</strong>
+      <p id="toastBody" class="toast-body"></p>
+    </div>
+  </div>
+
+  <nav class="navbar" aria-label="Navegación principal">
+    <a href="index.html" class="brand">SERVS<span>OPS</span></a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="navLinks">
+      <span class="sr-only">Abrir menú</span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servidores.html">Servidores Web</a></li>
+      <li><a href="hardware.html">Servidores Físicos <span class="nav-badge" aria-hidden="true">PAGO ÚNICO</span><span class="sr-only">— pago único</span></a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="contacto.html" class="active" aria-current="page">Contáctanos</a></li>
+    </ul>
+    <a href="contacto.html" class="btn btn-outline nav-cta">Soporte 24/7</a>
+  </nav>
+
+  <main id="main" class="page-container">
+    <div class="page-header">
+      <span class="section-tag">// CANAL DE COMUNICACIÓN</span>
+      <h1 class="section-title">Centro de Contacto &amp; Solicitudes</h1>
+      <p class="section-lead">Elige el departamento para recibir una respuesta de nuestros ingenieros en menos de 15 minutos.</p>
+    </div>
+
+    <div class="contact-wrapper">
+      <div class="form-panel">
+        <form id="contactForm">
+          <div class="form-group">
+            <label class="form-label" for="userDept">Departamento</label>
+            <select class="form-control" id="userDept" name="departamento" required>
+              <option value="ventas-cloud">Ventas Web &amp; VPS</option>
+              <option value="ventas-hardware">Venta de Servidores Físicos (Hardware / Pago Único)</option>
+              <option value="housing">Housing &amp; Colocation en Datacenter</option>
+              <option value="soporte">Soporte Técnico L3</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="userName">Nombre o empresa</label>
+              <input type="text" id="userName" name="nombre" class="form-control" placeholder="Ej. CyberTech SL" autocomplete="organization" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="userEmail">Correo electrónico</label>
+              <input type="email" id="userEmail" name="email" class="form-control" placeholder="admin@empresa.com" autocomplete="email" inputmode="email" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userSubject">Asunto</label>
+            <input type="text" id="userSubject" name="asunto" class="form-control" placeholder="Consulta técnica o pedido de servidor" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userMessage">Mensaje</label>
+            <textarea id="userMessage" name="mensaje" class="form-control" placeholder="Detalles de los requisitos de tu servidor…" required></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="website">No rellenar este campo</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary">Enviar solicitud</button>
+
+          <p class="form-hint">
+            Al enviar aceptas nuestra <a href="legal.html#privacidad">política de privacidad</a>.
+          </p>
+        </form>
+      </div>
+
+      <div class="info-panel">
+        <div>
+          <strong class="info-panel-title">Canales Directos NOC 24/7</strong>
+
+          <div class="info-item">
+            <p class="info-label">[DATACENTER PRINCIPAL]</p>
+            <strong>Madrid Tier IV — ESpanix</strong>
+            <p class="info-text">
+              Recepción de equipamiento físico para housing y despacho de servidores en propiedad.
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label is-amber">[GARANTÍA DE RESPUESTA]</p>
+            <strong>SLA comercial &lt; 15 minutos</strong>
+            <p class="info-text">
+              Todas las solicitudes enviadas desde este formulario se asignan directamente a un ingeniero de preventa.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-footer">
+          <span>¿Eres miembro del equipo?</span>
+          <a href="admin.html" class="btn btn-outline btn-small">Acceso empleados</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand footer-brand">SERVS<span>OPS</span></a>
+        <p>Infraestructura cloud y servidores de hardware dedicados con SLA del 99,999%.</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Navegación</h2>
+        <p><a href="servidores.html">Servidores Web</a></p>
+        <p><a href="hardware.html">Servidores Físicos</a></p>
+        <p><a href="nosotros.html">Sobre Nosotros</a></p>
+        <p><a href="contacto.html">Contáctanos</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Legal</h2>
+        <p><a href="legal.html#aviso-legal">Aviso legal</a></p>
+        <p><a href="legal.html#privacidad">Privacidad</a></p>
+        <p><a href="legal.html#cookies">Cookies</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Contacto</h2>
+        <p><a href="mailto:contacto@servsops.es">contacto@servsops.es</a></p>
+        <p>NOC 24/7 · Madrid · Barcelona · Málaga</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 ServsOps Infrastructure</div>
+      <div><a href="legal.html#aviso-legal">Aviso legal</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

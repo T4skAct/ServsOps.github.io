@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServsOps — Servidores Cloud y Hardware en Propiedad</title>
+  <meta name="description" content="Instancias cloud escalables con facturación mensual o servidores físicos en propiedad con pago único. Datacenters en Madrid, Barcelona y Málaga.">
+  <link rel="canonical" href="https://servsops.es/">
+  <meta name="theme-color" content="#060913">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ServsOps">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="ServsOps — Servidores Cloud y Hardware en Propiedad">
+  <meta property="og:description" content="Instancias cloud escalables con facturación mensual o servidores físicos en propiedad con pago único.">
+  <meta property="og:url" content="https://servsops.es/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ServsOps",
+      "url": "https://servsops.es/",
+      "logo": "https://servsops.es/assets/favicon.svg",
+      "email": "contacto@servsops.es",
+      "areaServed": "ES",
+      "description": "Infraestructura cloud y venta de servidores físicos en propiedad."
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué diferencia hay entre el Bare-Metal mensual y comprar un servidor físico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En el Bare-Metal mensual alquilas un servidor dedicado alojado en nuestro datacenter sin permanencia. En la venta de servidores físicos (pago único) compras la máquina en propiedad y puedes recibirla en tus oficinas o contratar solo el espacio y la electricidad (housing) en nuestros racks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Los precios mostrados en la web incluyen el IVA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Al ser servicios B2B, los importes son base imponible y deben incrementarse con el 21% de IVA vigente en España (o exención por ROI intracomunitario)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo personalizar la RAM o los discos de un servidor físico antes de comprarlo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Ensamblamos y validamos cada chasis a medida: indícanos tus requisitos al solicitar oferta y un ingeniero te enviará la cotización exacta."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <nav class="navbar" aria-label="Navegación principal">
+    <a href="index.html" class="brand">SERVS<span>OPS</span></a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="navLinks">
+      <span class="sr-only">Abrir menú</span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active" aria-current="page">Inicio</a></li>
+      <li><a href="servidores.html">Servidores Web</a></li>
+      <li><a href="hardware.html">Servidores Físicos <span class="nav-badge" aria-hidden="true">PAGO ÚNICO</span><span class="sr-only">— pago único</span></a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="contacto.html">Contáctanos</a></li>
+    </ul>
+    <a href="contacto.html" class="btn btn-outline nav-cta">Soporte 24/7</a>
+  </nav>
+
+  <main id="main">
+    <div class="hero">
+      <div>
+        <p class="hero-kicker">[TIER IV CERTIFIED] MADRID · BARCELONA · MÁLAGA</p>
+        <h1 class="hero-title">
+          POTENCIA BRUTA: <span>WEB O HARDWARE FÍSICO</span>
+        </h1>
+        <p class="hero-desc">
+          Elige entre instancias virtuales escalables con facturación mensual o adquiere <strong>servidores físicos completos en propiedad (pago único)</strong> con envío a tus instalaciones o colocación directa en nuestro datacenter.
+        </p>
+        <div class="hero-actions">
+          <a href="servidores.html" class="btn btn-primary">Ver Nodos Web</a>
+          <a href="hardware.html" class="btn btn-amber">Comprar Hardware Físico</a>
+        </div>
+      </div>
+
+      <div class="rack-visual">
+        <p class="rack-head">
+          <span>SYS_TELEMETRY: LIVE</span>
+          <span>SPAIN DC-01</span>
+        </p>
+        <div class="rack-blade">
+          <div>
+            <strong>1U RACK BLADE #01 [WEB]</strong>
+            <p class="rack-specs">Dual EPYC 9654 · 128 vCPU · NVMe Gen5</p>
+          </div>
+          <div aria-hidden="true"><span class="led green"></span> <span class="led blue"></span></div>
+        </div>
+        <div class="rack-blade">
+          <div>
+            <strong class="is-hardware">2U RACK BLADE #02 [VENTA FÍSICA]</strong>
+            <p class="rack-specs">Dual EPYC 9354 · 256GB DDR5 ECC · NVMe U.2</p>
+          </div>
+          <div aria-hidden="true"><span class="led amber"></span> <span class="led green"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="page-container section-divider" aria-labelledby="modelosTitle">
+      <div class="page-header">
+        <span class="section-tag">// ARQUITECTURA A MEDIDA</span>
+        <h2 class="section-title" id="modelosTitle">Dos modelos de infraestructura, cero intermediarios</h2>
+        <p class="section-lead">
+          Tanto si buscas elasticidad inmediata en la nube como si prefieres amortizar tu propio equipamiento físico en propiedad.
+        </p>
+      </div>
+
+      <div class="dual-grid">
+        <div class="card">
+          <div>
+            <img class="card-media" src="assets/img/cloud-baremetal.svg" width="640" height="340" loading="lazy" alt="Ilustración de un nodo Bare-Metal">
+            <span class="card-badge cloud">OPEX · MENSUAL</span>
+            <div class="card-header">
+              <h3 class="card-title">Nodos Cloud &amp; Bare-Metal</h3>
+              <p class="card-subtitle">Despliegue en menos de 120 segundos sin inversión inicial</p>
+            </div>
+            <ul class="specs-list">
+            <li><span>Facturación</span> <span>Mensual sin permanencia (+ IVA)</span></li>
+            <li><span>Escalabilidad</span> <span>Vertical en caliente (vCPU/RAM)</span></li>
+            <li><span>Mantenimiento</span> <span>Sustitución de piezas 100% incluida</span></li>
+            <li><span>Conectividad</span> <span>Hasta 10 Gbps + Anti-DDoS 3,2 Tbps</span></li>
+          </ul>
+          </div>
+          <a href="servidores.html" class="btn btn-outline btn-block">Explorar catálogo Cloud</a>
+        </div>
+
+        <div class="card hardware-card">
+          <div>
+            <img class="card-media" src="assets/img/hw-2u.svg" width="640" height="340" loading="lazy" alt="Frontal de un servidor físico 2U">
+            <span class="card-badge hardware">CAPEX · PAGO ÚNICO</span>
+            <div class="card-header">
+              <h3 class="card-title">Servidores Físicos en Propiedad</h3>
+              <p class="card-subtitle">Chasis 1U, 2U y estaciones GPU 100% activos de tu empresa</p>
+            </div>
+            <ul class="specs-list">
+            <li><span>Facturación</span> <span>Pago único (Factura de compra + IVA)</span></li>
+            <li><span>Entrega</span> <span>Envío a tu CPD o Housing en Madrid</span></li>
+            <li><span>Garantía</span> <span>3 a 5 años On-Site NBD / Sustitución</span></li>
+            <li><span>Gestión</span> <span>Acceso físico total + iDRAC9 / IPMI</span></li>
+          </ul>
+          </div>
+          <a href="hardware.html" class="btn btn-amber btn-block">Ver servidores en venta</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-container section-divider" aria-labelledby="ventajasTitle">
+      <div class="page-header">
+        <span class="section-tag">// ESPECIFICACIONES DE RED Y CPD</span>
+        <h2 class="section-title" id="ventajasTitle">Ingeniería crítica de serie</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-box">
+          <span class="feature-code">[01 // RED BGP PROPIA]</span>
+          <h3 class="feature-title">Baja latencia ibérica (&lt; 3 ms)</h3>
+          <p class="feature-text">
+            Conexión directa en ESpanix, DE-CIX y LINX con caudal de 100 Gbps redundado y mitigación DDoS permanente en borde.
+          </p>
+        </div>
+        <div class="feature-box">
+          <span class="feature-code">[02 // ZERO OVERSELLING]</span>
+          <h3 class="feature-title">Recursos 100% garantizados</h3>
+          <p class="feature-text">
+            No sobrevendemos ciclos de reloj ni ancho de banda. La memoria DDR5 ECC y el almacenamiento NVMe Gen4/Gen5 son estrictamente dedicados.
+          </p>
+        </div>
+        <div class="feature-box">
+          <span class="feature-code">[03 // SOPORTE NIVEL 3]</span>
+          <h3 class="feature-title">Ingenieros reales en &lt; 15 min</h3>
+          <p class="feature-text">
+            Sin bots ni guiones de primer nivel. Hablas directamente con administradores de sistemas en nuestro NOC 24/7 de Madrid, Barcelona y Málaga.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-container section-divider" aria-labelledby="faqTitle">
+      <div class="page-header">
+        <span class="section-tag">// RESOLUCIÓN DE DUDAS</span>
+        <h2 class="section-title" id="faqTitle">Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Qué diferencia hay entre el Bare-Metal mensual y comprar un servidor físico?</summary>
+          <p>
+            En la modalidad <strong>Bare-Metal mensual</strong> alquilas un servidor dedicado alojado en nuestro datacenter sin compromiso de permanencia. En la <strong>venta de servidores físicos (pago único)</strong> compras la máquina en propiedad: emitimos factura de venta del hardware y puedes recibirlo en tus oficinas o contratar solo el espacio y electricidad (housing) en nuestros racks.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Los precios mostrados en la web incluyen el IVA?</summary>
+          <p>
+            No. Al tratarse de servicios orientados a empresas y profesionales (B2B), todos los importes que figuran en el catálogo son base imponible y deben incrementarse con el 21% de IVA vigente en España (o exención por ROI intracomunitario).
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo personalizar la RAM o los discos de un servidor físico antes de comprarlo?</summary>
+          <p>
+            Sí. Ensamblamos y validamos cada chasis a medida. Al hacer clic en "Solicitar oferta" en cualquier modelo 1U, 2U o 4U, indícanos tus requisitos de almacenamiento NVMe/SAS, controladoras RAID o tarjetas de red adicionales y un ingeniero te enviará la cotización exacta.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand footer-brand">SERVS<span>OPS</span></a>
+        <p>Infraestructura cloud y servidores de hardware dedicados con SLA del 99,999%.</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Navegación</h2>
+        <p><a href="servidores.html">Servidores Web</a></p>
+        <p><a href="hardware.html">Servidores Físicos</a></p>
+        <p><a href="nosotros.html">Sobre Nosotros</a></p>
+        <p><a href="contacto.html">Contáctanos</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Legal</h2>
+        <p><a href="legal.html#aviso-legal">Aviso legal</a></p>
+        <p><a href="legal.html#privacidad">Privacidad</a></p>
+        <p><a href="legal.html#cookies">Cookies</a></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Contacto</h2>
+        <p><a href="mailto:contacto@servsops.es">contacto@servsops.es</a></p>
+        <p>NOC 24/7 · Madrid · Barcelona · Málaga</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 ServsOps Infrastructure</div>
+      <div><a href="legal.html#aviso-legal">Aviso legal</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
